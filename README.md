@@ -1,10 +1,8 @@
 # 3D Object Tracking
 
-
-https://github.com/user-attachments/assets/6dfe05da-0139-4869-a47e-a7a8047c8762
-
-[![TTC Video](output/ttc_frame/ttc_frame_1.png)](output/ttc_video.mp4)
+![TTC Animation](output/ttc.gif)
 ![Feature Matches Example](output/course_code_structure.png)
+_Image source: Udacity_
 
 ## Project Overview
 
