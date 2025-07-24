@@ -4,12 +4,13 @@
 
 ## Project Overview
 
-This project implements a comprehensive 3D object tracking system for autonomous driving scenarios, focusing on robust time-to-collision (TTC) estimation using both Lidar and camera data. The system matches 3D objects across consecutive frames, associates keypoint correspondences with detected objects, and computes TTC estimates using multiple sensor modalities. Outlier rejection and statistical robustness are emphasized throughout the pipeline to ensure reliable collision detection and tracking performance. The project also includes a detailed performance evaluation of different detector-descriptor combinations and analyzes the accuracy of TTC estimates under various conditions.
+This project implements a comprehensive 3D object tracking system for autonomous driving scenarios, focusing on robust time-to-collision (TTC) estimation using both Lidar and camera data. It employs YOLO for object detection, matches 3D objects across consecutive frames, associates keypoint correspondences with detected objects, and computes TTC estimates using multiple sensor modalities. Outlier rejection and statistical robustness are emphasized throughout the pipeline to ensure reliable collision detection and tracking performance. The project also includes a detailed performance evaluation of different detector-descriptor combinations and analyzes the accuracy of TTC estimates under various conditions.
 
 ## Objective
 
 The primary objective is to build a reliable 3D object tracking and collision detection system that can:
 
+- Detect objects using YOLO
 - Match 3D objects (bounding boxes) between consecutive frames using keypoint correspondences
 - Compute time-to-collision (TTC) estimates based on Lidar measurements, with robust outlier handling
 - Associate camera keypoint matches with bounding boxes and filter outliers for accurate TTC calculation
