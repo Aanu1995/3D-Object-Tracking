@@ -1,8 +1,6 @@
 # 3D Object Tracking
 
 ![TTC Animation](output/ttc.gif)
-![Feature Matches Example](output/course_code_structure.png)
-_Image source: Udacity_
 
 ## Project Overview
 
