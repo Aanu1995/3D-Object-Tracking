@@ -271,11 +271,6 @@ int main(int argc, const char *argv[]) {
                         cv::namedWindow(windowName, 4);
                         cv::imshow(windowName, visImg);
 
-                        // Save visualization image to output folder
-                        std::ostringstream outName;
-                        outName << "../output/ttc_frame_" << imgIndex << ".png";
-                        cv::imwrite(outName.str(), visImg);
-
                         cout << "Press key to continue to next frame" << endl;
                         cv::waitKey(0);
                     }
