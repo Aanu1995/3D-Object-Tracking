@@ -36,6 +36,9 @@ Implemented the [`computeTTCLidar`](src/camFusion_Student.cpp) function to estim
 
 ### 3. Associate Keypoint Correspondences with Bounding Boxes
 
+![Feature Matches Example](output/associateKeypoints.png)
+_Image source: Udacity_
+
 Implemented the [`clusterKptMatchesWithROI`](src/camFusion_Student.cpp) function to associate keypoint correspondences with their respective bounding boxes. For each bounding box, all matches where the current keypoint lies within the region of interest are collected and stored in the `kptMatches` property. The Euclidean distances between matched keypoints are analyzed, and outliers are removed using statistical filtering, resulting in a robust set of correspondences for each object to support accurate TTC calculations.
 
 ### 4. Compute Camera-based TTC
