@@ -50,14 +50,12 @@ void loadLidarFromFile(vector<LidarPoint> &lidarPoints, string filename){
 }
 
 
-void showLidarTopview(std::vector<LidarPoint> &lidarPoints, cv::Size worldSize, cv::Size imageSize, bool bWait)
-{
+void showLidarTopview(std::vector<LidarPoint> &lidarPoints, cv::Size worldSize, cv::Size imageSize, bool bWait) {
     // create topview image
     cv::Mat topviewImg(imageSize, CV_8UC3, cv::Scalar(0, 0, 0));
 
     // plot Lidar points into image
-    for (auto it = lidarPoints.begin(); it != lidarPoints.end(); ++it)
-    {
+    for (auto it = lidarPoints.begin(); it != lidarPoints.end(); ++it) {
         float xw = (*it).x; // world position in m with x facing forward from sensor
         float yw = (*it).y; // world position in m with y facing left from sensor
 
@@ -70,8 +68,7 @@ void showLidarTopview(std::vector<LidarPoint> &lidarPoints, cv::Size worldSize, 
     // plot distance markers
     float lineSpacing = 2.0; // gap between distance markers
     int nMarkers = floor(worldSize.height / lineSpacing);
-    for (size_t i = 0; i < nMarkers; ++i)
-    {
+    for (size_t i = 0; i < nMarkers; ++i) {
         int y = (-(i * lineSpacing) * imageSize.height / worldSize.height) + imageSize.height;
         cv::line(topviewImg, cv::Point(0, y), cv::Point(imageSize.width, y), cv::Scalar(255, 0, 0));
     }
@@ -80,14 +77,12 @@ void showLidarTopview(std::vector<LidarPoint> &lidarPoints, cv::Size worldSize, 
     string windowName = "Top-View Perspective of LiDAR data";
     cv::namedWindow(windowName, 2);
     cv::imshow(windowName, topviewImg);
-    if(bWait)
-    {
+    if(bWait){
         cv::waitKey(0); // wait for key to be pressed
     }
 }
 
-void showLidarImgOverlay(cv::Mat &img, std::vector<LidarPoint> &lidarPoints, cv::Mat &P_rect_xx, cv::Mat &R_rect_xx, cv::Mat &RT, cv::Mat *extVisImg)
-{
+void showLidarImgOverlay(cv::Mat &img, std::vector<LidarPoint> &lidarPoints, cv::Mat &P_rect_xx, cv::Mat &R_rect_xx, cv::Mat &RT, cv::Mat *extVisImg){
     // init image for visualization
     cv::Mat visImg;
     if(extVisImg==nullptr) {
@@ -100,8 +95,7 @@ void showLidarImgOverlay(cv::Mat &img, std::vector<LidarPoint> &lidarPoints, cv:
 
     // find max. x-value
     double maxVal = 0.0;
-    for(auto it=lidarPoints.begin(); it!=lidarPoints.end(); ++it)
-    {
+    for(auto it=lidarPoints.begin(); it!=lidarPoints.end(); ++it) {
         maxVal = maxVal<it->x ? it->x : maxVal;
     }
 
@@ -130,15 +124,12 @@ void showLidarImgOverlay(cv::Mat &img, std::vector<LidarPoint> &lidarPoints, cv:
     cv::addWeighted(overlay, opacity, visImg, 1 - opacity, 0, visImg);
 
     // return augmented image or wait if no image has been provided
-    if (extVisImg == nullptr)
-    {
+    if (extVisImg == nullptr) {
         string windowName = "LiDAR data on image overlay";
         cv::namedWindow( windowName, 3 );
         cv::imshow( windowName, visImg );
         cv::waitKey(0); // wait for key to be pressed
-    }
-    else
-    {
+    } else {
         extVisImg = &visImg;
     }
 }

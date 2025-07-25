@@ -48,3 +48,40 @@ Implemented the [`clusterKptMatchesWithROI`](src/camFusion_Student.cpp) function
 _Image source: Udacity_
 
 Implemented the [`computeTTCCamera`](src/camFusion_Student.cpp) function to estimate time-to-collision (TTC) for matched 3D objects using keypoint correspondences. The method calculates the change in scale between matched keypoints across consecutive frames and uses the median of distance ratios to filter out outliers. This approach ensures robust and reliable TTC estimation for each tracked object, minimizing the impact of erroneous matches.
+
+### 5. Performance Evaluation of Lidar-based TTC
+
+Below are several examples where the Lidar-based TTC estimate appears way off, based on manual inspection of the top view Lidar screenshots and the corresponding TTC printouts.
+
+As seen in the screenshots below, the top view shows some outliers in certain frames and these outliers were responsible for errors in our TTC. For example, the TTC in frame 3 jumped from 14.09s to 16.69s in frame 4 and then back to 12.78s in frame 6, with all these happening within a short time. These sudden fluctuations are not physically possible and show how sensitive the Lidar-based TTC calculation can be to outlier points. This shows that theses outliers need to be filtered out to be able to accurately estimate Lidar-based TTC.
+
+#### LidarTTC: Frame 3
+
+![Lidar Overlay Frame 3](output/lidarTTC-evaluation/lidar_overlay_3.png)
+![TTC Frame 3](output/ttc_frame/ttc_frame_3.png)
+
+#### LidarTTC: Frame 4
+
+![Lidar Overlay Frame 4](output/lidarTTC-evaluation/lidar_overlay_4.png)
+![TTC Frame 4](output/ttc_frame/ttc_frame_4.png)
+
+#### LidarTTC: Frame 6
+
+![Lidar Overlay Frame ](output/lidarTTC-evaluation/lidar_overlay_6.png)
+![TTC Frame 6](output/ttc_frame/ttc_frame_6.png)
+
+### 6. Performance Evaluation of Camera-based TTC
+
+In most frames, most detectors/descriptors produced moderately accurate Camera TTC that aligns with Lidar TTC value. However, Harris and ORB detector (irrespective of descriptor used) produced very unreliable camera TTC value that are extremely way off in some frames. FAST and SIFT detector produce accurate Camera TTC value that are not far off from Lidar TTC value. However, just like in Lidar-based TTC, there are some frames where even the Camera TTC value are far off as seen in screenshot below. In the screenshot below, FAST detector + BRIEF descriptor (best detector/descriptor selected in 2D feature detection project) was used and TTC in frame 4 jumped from 13.52s to 22.77s in frame 5 and then back to 13.49s in frame 6, with all these happening within a short time.
+
+#### CameraTTC: Frame 4
+
+![TTC Frame 4](output/ttc_frame/ttc_frame_4.png)
+
+#### CameraTTC: Frame 5
+
+![TTC Frame 5](output/ttc_frame/ttc_frame_5.png)
+
+#### CameraTTC: Frame 6
+
+![TTC Frame 6](output/ttc_frame/ttc_frame_6.png)

@@ -48,7 +48,7 @@ void clusterLidarWithROI(std::vector<BoundingBox> &boundingBoxes, std::vector<Li
                 enclosingBoxes.push_back(it2);
             }
 
-        } // eof loop over all bounding boxes
+        } // loop over all bounding boxes
 
         // check wether point has been enclosed by one or by multiple boxes
         if (enclosingBoxes.size() == 1) {
@@ -56,7 +56,7 @@ void clusterLidarWithROI(std::vector<BoundingBox> &boundingBoxes, std::vector<Li
             enclosingBoxes[0]->lidarPoints.push_back(*it1);
         }
 
-    } // eof loop over all Lidar points
+    } //  loop over all Lidar points
 }
 
 /*
@@ -64,8 +64,7 @@ void clusterLidarWithROI(std::vector<BoundingBox> &boundingBoxes, std::vector<Li
 * However, you can make this function work for other sizes too.
 * For instance, to use a 1000x1000 size, adjusting the text positions by dividing them by 2.
 */
-void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, cv::Size imageSize, bool bWait)
-{
+void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, cv::Size imageSize, bool bWait){
     // create topview image
     cv::Mat topviewImg(imageSize, CV_8UC3, cv::Scalar(255, 255, 255));
 
