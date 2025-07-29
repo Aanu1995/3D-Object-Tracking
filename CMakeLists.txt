@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.31 FATAL_ERROR)
 add_definitions(-std=c++17)
 
 set(CXX_FLAGS "-Wall" "-pedantic")
-set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 
 project(camera_fusion)
 
